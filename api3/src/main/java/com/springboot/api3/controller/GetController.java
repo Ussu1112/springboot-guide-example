@@ -1,29 +1,30 @@
 package com.springboot.api3.controller;
 
 import com.springboot.api3.dto.MemberDto;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/get-api")
-@Slf4j
 public class GetController {
 
+    private final Logger LOGGER = LoggerFactory.getLogger(GetController.class);
 
     //4.3 버전 이후부터는 각각 지정해서 사용 (ex. RequestMapping -> GetMapping)
     //@RequestMapping(value = "/hello", method = RequestMethod.GET)
     @GetMapping(value = "/hello")
     public String getHello(){
+        LOGGER.info("getHello 메서드가 호출 되었습니다.");
         return "Get Hello!";
     }
 
     @GetMapping(value = "/variable1/{variable}")
     public String getVariable1(@PathVariable String variable){
+        LOGGER.info("@PathVariable을 통해 들어온 값 : {}", variable);
         return variable;
     }
 
