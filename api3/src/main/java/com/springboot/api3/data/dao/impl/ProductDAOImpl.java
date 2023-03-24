@@ -10,12 +10,12 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Component
-public class ProductDAOimpl implements ProductDAO {
+public class ProductDAOImpl implements ProductDAO {
 
     private final ProductRepository productRepository;
 
     @Autowired
-    public ProductDAOimpl(ProductRepository productRepository){
+    public ProductDAOImpl(ProductRepository productRepository){
         this.productRepository = productRepository;
     }
     @Override
@@ -29,14 +29,14 @@ public class ProductDAOimpl implements ProductDAO {
         // EntityManager의 getReference()메서드를 호출하고 프락시객체를 리턴
         // 실제 쿼리는 프락시 객체를 통해 최초로 접근하는 시점에 실행
         // 데이터가 존재하지않을 때 EntityNotFoundException 발생
-        // Product selectedProduct = productRepository.getById(number);
+        Product selectedProduct = productRepository.getById(number);
 
         // EntityManager의 find() 메서드 실행
         // 영속성 컨텍스트의 캐시에서 값을 조회한 뒤 없으면 실제 디비에서 조회
         // 리턴 시 Optional 객체로 전달
-        Optional<Product> selectedProduct = productRepository.findById(number);
+        //Optional<Product> selectedProduct = productRepository.findById(number);
 
-        return null;
+        return selectedProduct;
     }
 
     @Override
